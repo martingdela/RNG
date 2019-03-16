@@ -16,8 +16,8 @@ class RNSelector extends Component {
 
 	render() {
 		return (
-			<>
-				<label>1) Selecciona un metodo de creacion de numeros aleatorios</label>
+			<>			
+				<h5> Selecciona un metodo de creacion de numeros aleatorios</h5>
 				<div className="container">
 					<div className="row">
 						<div className="twelve columns">
