@@ -11,6 +11,7 @@ const math = require('mathjs')
 function middleSquares(seed,cases){
 	if(cases == 0 || seed.length != 4 || seed != parseInt(seed,10)){
 		alert('Las variables no cumplen con los requerimientos necesarios para correr este metodo')
+		return []
 	}
 	var steps = [] //We'll be storing all steps using this variable
 	var cseed = seed
@@ -30,7 +31,7 @@ function middleSquares(seed,cases){
 		// Calculate the pseudorandom number
 		var randomnum = parseInt(prerandom,10) / 10000
 		// Add the random number to the step
-		step.randomnum = randomnum
+		step.random = randomnum
 		// Rewrite the seed
 		cseed = prerandom
 		//Add to the steps
@@ -50,6 +51,7 @@ function middleSquares(seed,cases){
 function congruentialMethod(seed,a,c,m,cases){
 	if(parseInt(a) > parseInt(m) || parseInt(seed) > parseInt(m) || parseInt(c) > parseInt(m)){
 		alert('Las variables no cumplen con los requerimientos necesarios para correr este metodo')
+		return []
 	}
 	return congMethodGen(seed,a,c,m,cases)
 }
@@ -92,15 +94,18 @@ function congMethodGen(seed,a,c,m,cases){
 function congruentialMixedMethod(seed, a, c, m, cases){
 	/* Check for Hull-Dobel */
 	if(!relativePrime(c,m)){
-		console.error('S1-> Las variables c y m no son primos relativos, no cumplen con Hull-Dobel')
+		alert('S1-> Las variables c y m no son primos relativos, no cumplen con Hull-Dobel')
+		return []
 	}
 
 	if(!hulldobelstep2(a,m)){
-		console.error('S2 -> Las variables a y m no cumplen con la segunda regla de Hull-Dobel')
+		alert('S2 -> Las variables a y m no cumplen con la segunda regla de Hull-Dobel')
+		return []
 	}
 
 	if(!hulldobelstep3(a,m)){
-		console.error('S3-> Las variables a y m no cumplen con la tercera regla de Hull-Dobel')
+		alert('S3-> Las variables a y m no cumplen con la tercera regla de Hull-Dobel')
+		return []
 	}
 
 	return congMethodGen(seed,a,c,m,cases)
@@ -115,7 +120,8 @@ function congruentialMixedMethod(seed, a, c, m, cases){
  */
 function congruentialMultiplicative(seed,a,m,cases){
 	if(!(parseInt(m) > parseInt(a) && parseInt(m) > parseInt(seed))){
-		console.error('Las variables no satisfacen los req. para este metodo')
+		alert('Las variables no satisfacen los req. para este metodo')
+		return []
 	}
 
 	return congMethodGen(seed,a,0,m,cases)

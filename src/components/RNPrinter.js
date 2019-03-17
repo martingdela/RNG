@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RNMethods from '../utilities/rmethods'
+import RNCSelector from './RNCSelector'
 
 class App extends Component {
 
@@ -53,15 +54,14 @@ class App extends Component {
 	render() {
 		return (
 			<>
-			<br/>
 				<div className="container">
 					<div className="row" style={{ padding: "1%" }}>
 						<button onClick={this.onClick} type="submit">Generar</button>
 					</div>
 				</div>
-
+				<br/>
 				{this.state.solution.length === 0 ? (
-					<h1> NO elements </h1>
+					<h1> No hay elementos en la tabla </h1>
 				): this.props.method === "0" ? (
 					<table style={{width: "80%"}}>
 						<tr>
@@ -75,7 +75,7 @@ class App extends Component {
 								<td>{step.n}</td>
 								<td>{step.seed}</td>
 								<td>{step.prerandom}</td>
-								<td>{step.randomnum}</td>
+								<td>{step.random}</td>
 							</tr>
 						))}
 					</table>
@@ -132,6 +132,12 @@ class App extends Component {
 					</table>
 				): (
 					<h1>m5</h1>
+				)}
+
+				{this.state.solution.length > 0 ? (
+					<RNCSelector numbers={this.state.solution}/>
+				) : (
+					<></>
 				)}
 
 			</>
