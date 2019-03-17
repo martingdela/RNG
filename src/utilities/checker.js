@@ -50,7 +50,7 @@ function chisquare(randomnumbers, alpha){
 	}
 
 	var g = gamma.calcFunctionInv(alpha,v)
-	return [feisqrsum, g, tble]
+	return [feisqrsum, g, tble,size,max,min,range,k,tsize]
 
 }
 
