@@ -1,7 +1,7 @@
 /* Mathematical packages */
 const math = require('mathjs')
 const gamma = require('./distribution/gammafns')
-const kolmorogov = require('./kolmorogov')
+const kolmorogov = require('./distribution/kolmo')
 /**
  * 
  * @param {*} randomnumbers 
@@ -50,7 +50,7 @@ function chisquare(randomnumbers, alpha){
 	}
 
 	var g = gamma.calcFunctionInv(alpha,v)
-	return feisqrsum < g
+	return [feisqrsum, g, tble]
 
 }
 
@@ -100,7 +100,7 @@ function kolmorogovTest(randomnumbers, alpha){
 	// Calculate the kolm. inv
 	var k = kolmorogov.invSmirnov(randomnumbers.length,alpha)
 	// Check
-	return k > D
+	return [dMINUS,dPLUS,D,k,result]
 	
 }
 

@@ -1,5 +1,5 @@
 function gm_log(a) {
-    var b, c, d, e, f;
+    var b, c, d, e, f, cft;
     for (cft = [76.18009172947146, -86.50532032941678, 24.01409824083091, -1.231739572450155, .001208650973866179, -5395239384953e-18], c = b = a, d = b + 5.5, d -= (b + .5) * Math.log(d), e = 1.000000000190015, f = 0; 5 >= f; f++) e += cft[f] / ++c;
     return -d + Math.log(2.5066282746310007 * e / b)
 }
@@ -46,7 +46,9 @@ function gm_qinv(a, b) {
     for (f = a + Math.sqrt(a) * (.5 - b), e = 1; c >= e; e++) {
         if (g = gm_qb(a, f, j), 0 > g) return -1;
         if (g -= b, d > Math.abs(g)) return f;
-        h = gm_qderiv(a, f, j), i = g / h, f -= i
+		h = gm_qderiv(a, f, j)
+		i = g / h
+		f -= i
     }
     return alert("Sorry, failed to find to a solution in gm_qinv"), -1
 }
