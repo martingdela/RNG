@@ -31,6 +31,7 @@ function chisquare(randomnumbers, alpha){
 		// Rewrite the lower bound
 		lowerBound = obj.upperb
 		// Calculate f0abs
+		// eslint-disable-next-line
 		obj.f0abs = randomnumbers.reduce((r,n) => n >= obj.lowerb && n <= obj.upperb ? ++r : r, 0);
 		// Calculate f0rel
 		obj.f0rel = obj.f0abs / size
@@ -72,7 +73,7 @@ function kolmorogovTest(randomnumbers, alpha){
 		// Calculate i/n - F(x)
 		res.iOVERnMINUSfxi = res.iOVERn - randomnumbers[i]
 		// Calculate F(xi) - (i-1)/n
-		if(i == 0){
+		if(i === 0){
 			res.fxiMINUSiMINUS1OVERn = randomnumbers[i]
 		} else {
 			res.fxiMINUSiMINUS1OVERn = randomnumbers[i] - (i)/randomnumbers.length
@@ -83,14 +84,14 @@ function kolmorogovTest(randomnumbers, alpha){
 
 	//Calculate max number from the iOVERnMINUSfxi column
 	var dPLUS = -1
-	for(var i = 0; i < result.length; i++){
+	for(i = 0; i < result.length; i++){
 		if(result[i].iOVERnMINUSfxi > dPLUS){
 			dPLUS = result[i].iOVERnMINUSfxi
 		}
 	}
 	//Calculate max number from the fxiMINUSiMINUS1OVERn column
 	var dMINUS = -1
-	for(var i = 0; i < result.length; i++){
+	for(i = 0; i < result.length; i++){
 		if(result[i].fxiMINUSiMINUS1OVERn > dMINUS){
 			dMINUS = result[i].fxiMINUSiMINUS1OVERn
 		}
