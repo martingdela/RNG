@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RNPrinter from './RNPrinter'
 
 class RNForm extends Component {
 
@@ -18,19 +19,19 @@ class RNForm extends Component {
 	handleInputChange = (event) => {
 		switch (event.target.id) {
 			case "seed":
-				this.setState({ seed: event.target.value })
+				this.setState({ seed: event.target.value > 0 ? event.target.value : 0})
 				break
 			case "count":
-				this.setState({ number: event.target.value })
+				this.setState({ number: event.target.value > 0 ? event.target.value : 0 })
 				break
 			case "a":
-				this.setState({ a: event.target.value })
+				this.setState({ a: event.target.value > 0 ? event.target.value : 0 })
 				break
 			case "c":
-				this.setState({ c: event.target.valuec })
+				this.setState({ c: event.target.value > 0 ? event.target.value : 0 })
 				break
 			case "m":
-				this.setState({ m: event.target.value })
+				this.setState({ m: event.target.value > 0 ? event.target.value : 0 })
 				break
 			default:
 				alert('DEBUG: SOMETHING HAPPENED')
@@ -53,10 +54,10 @@ class RNForm extends Component {
 								<label>Numeros a generar</label>
 								<input type="number" id="count" placeholder="9" name="count" value={this.state.number} onChange={this.handleInputChange} />
 							</div>
-							<div className="row" style={{ padding: "1%" }}>
-								<button type="submit">Generar</button>
-							</div>
+							
 						</div>
+
+					<RNPrinter method={this.props.method} seed={this.state.seed} count={this.state.number} a={this.state.a} c={this.state.c} m={this.state.m}/>
 					</>
 				)
 
@@ -86,10 +87,8 @@ class RNForm extends Component {
 							<label>Numeros a generar</label>
 							<input type="number" id="count" value={this.state.count} onChange={this.handleInputChange} placeholder="9" name="count" />
 						</div>
-						<div class="row" style={{padding: "1%"}}>
-							<button type="submit">Generar</button>
-						</div>
 					</div>
+					<RNPrinter method={this.props.method} seed={this.state.seed} count={this.state.number} a={this.state.a} c={this.state.c} m={this.state.m}/>
 					</>
 				)
 
@@ -115,10 +114,8 @@ class RNForm extends Component {
 							<label>Numeros a generar</label>
 							<input type="number" id="count" value={this.state.count} onChange={this.handleInputChange} placeholder="9" name="count" />
 						</div>
-						<div class="row" style={{padding: "1%"}}>
-							<button type="submit">Generar</button>
-						</div>
 					</div>
+					<RNPrinter method={this.props.method} seed={this.state.seed} count={this.state.number} a={this.state.a} c={this.state.c} m={this.state.m}/>
 					</>
 				)
 			case "4":
