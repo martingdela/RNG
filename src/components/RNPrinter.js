@@ -46,7 +46,16 @@ class App extends Component {
 					this.props.count
 				)})
 				break
+			case "4":
+				this.setState({solution: RNMethods.congruentialLinearCombinated(
+					this.props.seeds,
+					this.props.as,
+					this.props.ms,
+					this.props.count
+				)})
+				break
 			default:
+				return true
 				
 		}
 	}
@@ -131,7 +140,20 @@ class App extends Component {
 						))}
 					</table>
 				): (
-					<h1>m5</h1>
+					<table style={{width: "80%"}}>
+						<tr>
+							<th> Number </th>
+							<th> Pre-Random </th>
+							<th> Random </th>
+						</tr>
+						{this.state.solution.map(step =>(
+							<tr>
+								<td>{step.n}</td>
+								<td>{step.prerandom}</td>
+								<td>{step.random}</td>
+							</tr>
+						))}
+					</table>
 				)}
 
 				{this.state.solution.length > 0 ? (
