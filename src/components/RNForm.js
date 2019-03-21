@@ -191,46 +191,61 @@ class RNFormAux extends Component {
 		switch (event.target.id) {
 			case "seed":
 				for (i = 0; i < this.props.times; i++) {
-					if (!this.state.seeds[i]) {
+					if (this.state.seeds[i]) {
 						if (i === id.i) {
 							aux[i] = event.target.value > 0 ? event.target.value : 0
 						} else {
 							aux[i] = this.state.seeds[i]
 						}
 					} else {
-						aux[i] = 0
+						if (i === id.i) {
+							aux[i] = event.target.value > 0 ? event.target.value : 0
+						} else {
+							aux[i] = 0
+						}
 					}
 				}
+				console.log('seed ' + aux)
 				this.setState({ seeds: aux })
 				break
 			
 			case "a":
 				for (i = 0; i < this.props.times; i++) {
-					if (!this.state.as[i]) {
+					if (this.state.as[i]) {
 						if (i === id.i) {
 							aux[i] = event.target.value > 0 ? event.target.value : 0
 						} else {
 							aux[i] = this.state.as[i]
 						}
 					} else {
-						aux[i] = 0
+						if (i === id.i) {
+							aux[i] = event.target.value > 0 ? event.target.value : 0
+						} else {
+							aux[i] = 0
+						}
 					}
 				}
+				console.log('a ' + aux)
 				this.setState({ as: aux })
 				break
 			
 			case "m":
 				for (i = 0; i < this.props.times; i++) {
-					if (!this.state.ms[i]) {
+					if (this.state.ms[i]) {
 						if (i === id.i) {
 							aux[i] = event.target.value > 0 ? event.target.value : 0
 						} else {
 							aux[i] = this.state.ms[i]
 						}
 					} else {
-						aux[i] = 0
+						if (i === id.i) {
+							aux[i] = event.target.value > 0 ? event.target.value : 0
+						} else {
+							aux[i] = 0
+						}
 					}
 				}
+				console.log('m ' + aux)
 				this.setState({ ms: aux })
 				break
 
