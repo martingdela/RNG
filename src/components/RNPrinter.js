@@ -46,6 +46,27 @@ class App extends Component {
 					this.props.count
 				)})
 				break
+			case "4":
+			if(this.props.mtype === 0){
+				this.setState({solution: RNMethods.congruentialLinearCombinated(
+					this.props.seed.split(','),
+					this.props.a.split(','),
+					this.props.m.split(','),
+					this.props.c.split(','),
+					this.props.count,
+					this.props.a.split(',').length
+				)})
+			} else {
+				this.setState({solution: RNMethods.congruentialLinearCombinatedClase(
+					this.props.seed.split(','),
+					this.props.a.split(','),
+					this.props.m.split(','),
+					this.props.c.split(','),
+					this.props.count,
+					this.props.a.split(',').length
+				)})
+			}
+				
 			default:
 				
 		}
@@ -131,7 +152,51 @@ class App extends Component {
 						))}
 					</table>
 				): (
-					<h1>m5</h1>
+					<table style={{width: "80%"}}>
+					<td>
+						<tr>
+							<tr>
+								<td> n </td>
+							</tr>
+								{this.props.a.split(',').map(a => (
+									<tr>
+										<td> Xn </td>
+									</tr>
+								))}
+							<tr>
+								<td> Wn </td>
+							</tr>
+							<tr>
+								<td> Random </td>
+							</tr>
+						</tr>
+						</td>
+						
+						{this.state.solution.map(step =>(
+							<>
+							<td>
+							<tr>
+								<td>{step.j}</td>
+							</tr>
+							
+							{step.gns.map(s => (
+								<tr>
+									<td>{s.Xn}</td>
+								</tr>
+							))}
+							
+							<tr>
+								<td>{step.wj}</td>
+							</tr>
+							<tr>
+								<td>{step.random}</td>
+							</tr>
+							</td>
+							</>
+							
+							
+						))}
+					</table>
 				)}
 
 				{this.state.solution.length > 0 ? (

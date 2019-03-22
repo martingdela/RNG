@@ -68,6 +68,8 @@ function kolmorogovTest(randomnumbers, alpha){
 		var res = {}
 		// Store i
 		res.i = i+1
+
+		res.num = randomnumbers[i]
 		// Calculate i/n
 		res.iOVERn = (i+1)/randomnumbers.length
 		// Calculate i/n - F(x)

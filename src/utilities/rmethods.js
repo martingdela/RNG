@@ -140,6 +140,43 @@ function congruentialMultiplicative(seed,a,m,cases){
 
 function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 	if(!(parseInt(seed.length) == parseInt(a.length) && parseInt(seed.length) == parseInt(m.length) && parseInt(a.length) == parseInt(m.length))) {
+		console.log(seed,a,m,c,cases,gens)
+		console.error('No hay un número suficiente de variables en los generadores')
+		process.exit(1)
+	}
+	console.log(seed,a,m,cases,gens)
+
+	var Xn = seed
+	var Mmax = math.max(m)
+	var steps = []
+	cases = parseInt(cases)
+
+	for(var j = 1; j <= cases; j++){
+		var step = []
+		var gns = []
+		for(var k = 0; k < gens; k++){
+			var gn = {}
+			gn.k = k+1
+			//We calculate the generator
+			Xn[k] = math.mod((parseInt(a[k])+parseInt(c[k]))*Xn[k],m[k])
+			gn.Xn = Xn[k]
+			gns.push(gn)
+		}
+		step.gns = gns
+		//We calculate the Wj value
+		step.j = j
+		step.wj = math.mod(math.pow(-1,j-1)*gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax-1)
+		step.random = '0.'+step.wj
+		steps.push(step)
+		
+	}
+	console.log(steps)
+	return steps
+}
+
+function congruentialLinearCombinatedClase(seed, a, m, c, cases,gens){
+	if(!(parseInt(seed.length) == parseInt(a.length) && parseInt(seed.length) == parseInt(m.length) && parseInt(a.length) == parseInt(m.length))) {
+		console.log(seed,a,m,c,cases,gens)
 		console.error('No hay un número suficiente de variables en los generadores')
 		process.exit(1)
 	}
@@ -147,30 +184,30 @@ function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 	var Xn = seed
 	var Mmax = math.max(m)
 	var steps = []
+	cases = parseInt(cases)
 
 	for(var j = 1; j <= cases; j++){
 		var step = []
 		var gns = []
-		step.j = j
 		for(var k = 0; k < gens; k++){
 			var gn = {}
 			gn.k = k+1
 			//We calculate the generator
 			Xn[k] = math.mod((parseInt(a[k])+parseInt(c[k]))*Xn[k],m[k])
-			gns.push(Xn[k])
 			gn.Xn = Xn[k]
-			step.push(gn)
+			gns.push(gn)
 		}
+		step.gns = gns
 		//We calculate the Wj value
-		step.wj = math.mod(math.pow(-1,j-1)*gns.reduce(function(a,b){return a-b}),Mmax-1)
+		step.j = j
+		step.wj = math.mod(gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax)
+		step.random = '0.'+step.wj
 		steps.push(step)
+		
 	}
 	console.log(steps)
-	console.log(m.reduce(function(a,b){return (a-1)*(b-1)})/k)
+	return steps
 }
-
-congruentialLinearCombinated([1,3],[3,5],[5,7],[0,0],15,2)
-
 
 
 /**
@@ -237,4 +274,4 @@ function relativePrime(a,b){
 }
 
 
-module.exports = {middleSquares,congruentialMethod,congruentialMixedMethod, congruentialMultiplicative}
+module.exports = {middleSquares,congruentialMethod,congruentialMixedMethod, congruentialMultiplicative,congruentialLinearCombinated,congruentialLinearCombinatedClase}
