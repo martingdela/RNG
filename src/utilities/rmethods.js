@@ -166,7 +166,7 @@ function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 		//We calculate the Wj value
 		step.j = j
 		step.wj = math.mod(math.pow(-1,j-1)*gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax-1)
-		step.random = '0.'+step.wj
+		step.random = step.wj/Mmax
 		steps.push(step)
 		
 	}
@@ -201,7 +201,7 @@ function congruentialLinearCombinatedClase(seed, a, m, c, cases,gens){
 		//We calculate the Wj value
 		step.j = j
 		step.wj = math.mod(gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax)
-		step.random = '0.'+step.wj
+		step.random = step.wj/Mmax
 		steps.push(step)
 		
 	}
