@@ -65,6 +65,8 @@ class RNForm extends Component {
 		newState.child.dataFromChild.ms = dataFromCallback.ms
 		newState.child.dataFromChild.count = dataFromCallback.count
 
+		console.log(newState)
+
 		this.setState( newState )
 	}
 
@@ -187,7 +189,11 @@ class RNFormAux extends Component {
 
 	handleInputChangeSon = (id, event) => {
 		var aux = []
+		var newState = {}
 		var i 
+
+		newState = { ...this.state }	
+
 		switch (event.target.id) {
 			case "seed":
 				for (i = 0; i < this.props.times; i++) {
@@ -206,7 +212,9 @@ class RNFormAux extends Component {
 					}
 				}
 				console.log('seed ' + aux)
-				this.setState({ seeds: aux })
+				
+				newState.seeds = aux
+				
 				break
 			
 			case "a":
@@ -226,7 +234,9 @@ class RNFormAux extends Component {
 					}
 				}
 				console.log('a ' + aux)
-				this.setState({ as: aux })
+				
+				newState.as = aux
+				
 				break
 			
 			case "m":
@@ -246,18 +256,22 @@ class RNFormAux extends Component {
 					}
 				}
 				console.log('m ' + aux)
-				this.setState({ ms: aux })
+				
+				newState.ms = aux
+				
 				break
 
 			case "count":
-				this.setState({ count: event.target.value > 0 ? event.target.value : 0 })
+				newState.count = event.target.value > 0 ? event.target.value : 0
+				
 				break
 			
 			default:
 				alert('DEBUG: SOMETHING HAPPENED')
 		}
 
-		this.props.callbackFromParent(this.state)
+		this.setState( newState )
+		this.props.callbackFromParent(newState)
 	}
 
 	render() {
