@@ -88,6 +88,7 @@ class App extends Component {
 						<tr>
 							<th> Number </th>
 							<th> Seed </th>
+							<ht> Square </ht>
 							<th> Pre-Random </th>
 							<th> Random </th>
 						</tr>
@@ -95,6 +96,7 @@ class App extends Component {
 							<tr>
 								<td>{step.n}</td>
 								<td>{step.seed}</td>
+								<td>{step.square}</td>
 								<td>{step.prerandom}</td>
 								<td>{step.random}</td>
 							</tr>

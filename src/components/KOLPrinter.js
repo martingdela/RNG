@@ -88,6 +88,8 @@ class App extends Component {
 								<td>{this.state.k}</td>
 							</tr>
 						</table>
+
+						{this.state.D > this.state.k ? <h4> No cumple </h4> : <h4> Si cumple</h4>}
 					</>
 				)}
 			</>
