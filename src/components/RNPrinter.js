@@ -47,26 +47,26 @@ class App extends Component {
 				)})
 				break
 			case "4":
-			if(this.props.mtype === 0){
-				this.setState({solution: RNMethods.congruentialLinearCombinated(
-					this.props.seed.split(','),
-					this.props.a.split(','),
-					this.props.m.split(','),
-					this.props.c.split(','),
-					this.props.count,
-					this.props.a.split(',').length
-				)})
-			} else {
-				this.setState({solution: RNMethods.congruentialLinearCombinatedClase(
-					this.props.seed.split(','),
-					this.props.a.split(','),
-					this.props.m.split(','),
-					this.props.c.split(','),
-					this.props.count,
-					this.props.a.split(',').length
-				)})
-			}
-				
+				if(this.props.mtype === 0){
+					this.setState({solution: RNMethods.congruentialLinearCombinated(
+						this.props.seed.split(','),
+						this.props.a.split(','),
+						this.props.m.split(','),
+						this.props.c.split(','),
+						this.props.count,
+						this.props.a.split(',').length
+					)})
+				} else {
+					this.setState({solution: RNMethods.congruentialLinearCombinatedClase(
+						this.props.seed.split(','),
+						this.props.a.split(','),
+						this.props.m.split(','),
+						this.props.c.split(','),
+						this.props.count,
+						this.props.a.split(',').length
+					)})
+				}
+				break
 			default:
 				
 		}

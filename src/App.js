@@ -11,8 +11,8 @@ import RNSelector from './components/RNSelector'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Random Number Generator</h1>
+      <div className="App" class="container">
+        <h1 class="mainTitle">Random Number Generator</h1>
         <RNSelector/>
       </div>
     );

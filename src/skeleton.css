@@ -125,13 +125,14 @@ body {
   line-height: 1.6;
   font-weight: 400;
   font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #222; }
+  color: #222;
+  background-color: #f2f2f2; }
 
 
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
+  margin-top: 5;
   margin-bottom: 2rem;
   font-weight: 300; }
 h1 { font-size: 4.0rem; line-height: 1.2;  letter-spacing: -.1rem;}
@@ -236,7 +237,7 @@ textarea,
 select {
   height: 38px;
   padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #fff;
+  background-color: #e6e6e6d2;
   border: 1px solid #D1D1D1;
   border-radius: 4px;
   box-shadow: none;
@@ -416,3 +417,8 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
+.mainTitle {
+  text-align: center;
+  color: #404040;
+}

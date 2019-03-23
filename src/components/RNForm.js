@@ -147,7 +147,7 @@ class RNForm extends Component {
 										</div>
 									</div>
 									<div className="container" style={{ marginBottom: "5%" }}>
-										<h2>Ingresa los numeros por comas</h2>
+										<h5>Ingresa los numeros por comas</h5>
 										<div className="row">
 											<label>Valor de 'semilla'</label>
 											<input type="text" id="seed" placeholder="9" name="seed" value={this.state.seed} onChange={this.handleInputChange}/>
