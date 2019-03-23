@@ -2,6 +2,35 @@ import React, { Component } from 'react';
 import RNMethods from '../utilities/rmethods'
 import RNCSelector from './RNCSelector'
 
+// Style
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import withRoot from '../withRoot'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+const styles = theme => ({
+	button: {
+		margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px 25%`,
+		minWidth: 150,
+		minHeight: 50,
+		fontSize: 12,
+	},
+	title: {
+		padding: `${theme.spacing.unit * 5}px 0 ${theme.spacing.unit * 3}px 0`,
+		textAlign: 'center',
+	},
+	table: {
+		minWidth: 500,
+	},
+})
+
 class App extends Component {
 
 
@@ -73,130 +102,128 @@ class App extends Component {
 	}
 
 	render() {
+		const { classes } = this.props;
 		return (
-			<>
+			<div>
+				<CssBaseline />
 				<div className="container">
 					<div className="row" style={{ padding: "1%" }}>
-						<button onClick={this.onClick} type="submit">Generar</button>
+						<Button onClick={this.onClick} type="submit" variant="contained" color="primary" className={classes.button}>Generar</Button>
 					</div>
 				</div>
-				<br/>
 				{this.state.solution.length === 0 ? (
-					<h1> No hay elementos en la tabla </h1>
+					<Typography className={classes.title} variant="h4" color="inherit">No hay elementos en la tabla</Typography>
 				): this.props.method === "0" ? (
-					<table style={{width: "80%"}}>
-						<tr>
-							<th> Number </th>
-							<th> Seed </th>
-							<th> Pre-Random </th>
-							<th> Random </th>
-						</tr>
-						{this.state.solution.map(step =>(
-							<tr>
-								<td>{step.n}</td>
-								<td>{step.seed}</td>
-								<td>{step.prerandom}</td>
-								<td>{step.random}</td>
-							</tr>
-						))}
-					</table>
-				): this.props.method === "1" ? (
-					<table style={{width: "80%"}}>
-						<tr>
-							<th> Number </th>
-							<th> Seed </th>
-							<th> Pre-Random </th>
-							<th> Random </th>
-						</tr>
-						{this.state.solution.map(step =>(
-							<tr>
-								<td>{step.n}</td>
-								<td>{step.seed}</td>
-								<td>{step.prerandom}</td>
-								<td>{step.random}</td>
-							</tr>
-						))}
-					</table>
-				): this.props.method === "2" ? (
-					<table style={{width: "80%"}}>
-						<tr>
-							<th> Number </th>
-							<th> Seed </th>
-							<th> Pre-Random </th>
-							<th> Random </th>
-						</tr>
-						{this.state.solution.map(step =>(
-							<tr>
-								<td>{step.n}</td>
-								<td>{step.seed}</td>
-								<td>{step.prerandom}</td>
-								<td>{step.random}</td>
-							</tr>
-						))}
-					</table>
-				): this.props.method === "3" ?(
-					<table style={{width: "80%"}}>
-						<tr>
-							<th> Number </th>
-							<th> Seed </th>
-							<th> Pre-Random </th>
-							<th> Random </th>
-						</tr>
-						{this.state.solution.map(step =>(
-							<tr>
-								<td>{step.n}</td>
-								<td>{step.seed}</td>
-								<td>{step.prerandom}</td>
-								<td>{step.random}</td>
-							</tr>
-						))}
-					</table>
-				): (
-					<table style={{width: "80%"}}>
-					<td>
-						<tr>
-							<tr>
-								<td> n </td>
-							</tr>
-								{this.props.a.split(',').map(a => (
-									<tr>
-										<td> Xn </td>
-									</tr>
-								))}
-							<tr>
-								<td> Wn </td>
-							</tr>
-							<tr>
-								<td> Random </td>
-							</tr>
-						</tr>
-						</td>
-						
-						{this.state.solution.map(step =>(
-							<>
-							<td>
-							<tr>
-								<td>{step.j}</td>
-							</tr>
-							
-							{step.gns.map(s => (
-								<tr>
-									<td>{s.Xn}</td>
-								</tr>
+					<Table className={classes.table}>
+						<TableHead>
+							<TableRow>
+								<TableCell> Number </TableCell>
+								<TableCell> Seed </TableCell>
+								<TableCell> Pre-Random </TableCell>
+								<TableCell> Random </TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{this.state.solution.map(step => (
+								<TableRow>
+									<TableCell>{step.n}</TableCell>
+									<TableCell>{step.seed}</TableCell>
+									<TableCell>{step.prerandom}</TableCell>
+									<TableCell>{step.random}</TableCell>
+								</TableRow>
 							))}
-							
-							<tr>
-								<td>{step.wj}</td>
-							</tr>
-							<tr>
-								<td>{step.random}</td>
-							</tr>
-							</td>
-							</>
-							
-							
-						))}
-					</table>
+						</TableBody>
+					</Table>
+				): this.props.method === "1" ? (
+					<Table className={classes.table}>
+						<TableHead>
+							<TableRow>
+								<TableCell> Number </TableCell>
+								<TableCell> Seed </TableCell>
+								<TableCell> Pre-Random </TableCell>
+								<TableCell> Random </TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{this.state.solution.map(step => (
+								<TableRow>
+									<TableCell>{step.n}</TableCell>
+									<TableCell>{step.seed}</TableCell>
+									<TableCell>{step.prerandom}</TableCell>
+									<TableCell>{step.random}</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				): this.props.method === "2" ? (
+					<Table className={classes.table}>
+						<TableHead>
+							<TableRow>
+								<TableCell> Number </TableCell>
+								<TableCell> Seed </TableCell>
+								<TableCell> Pre-Random </TableCell>
+								<TableCell> Random </TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{this.state.solution.map(step => (
+								<TableRow>
+									<TableCell>{step.n}</TableCell>
+									<TableCell>{step.seed}</TableCell>
+									<TableCell>{step.prerandom}</TableCell>
+									<TableCell>{step.random}</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				): this.props.method === "3" ?(
+					<Table className={classes.table}>
+						<TableHead>
+							<TableRow>
+								<TableCell> Number </TableCell>
+								<TableCell> Seed </TableCell>
+								<TableCell> Pre-Random </TableCell>
+								<TableCell> Random </TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{this.state.solution.map(step => (
+								<TableRow>
+									<TableCell>{step.n}</TableCell>
+									<TableCell>{step.seed}</TableCell>
+									<TableCell>{step.prerandom}</TableCell>
+									<TableCell>{step.random}</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				): (
+					<>
+					<Table className={classes.table}>
+						<TableBody>
+							<TableCell>
+								<TableRow>
+									<TableRow><TableCell> n </TableCell></TableRow>
+									{this.props.a.split(',').map(a => (
+										<TableRow><TableCell>Xn</TableCell></TableRow>
+									))}
+									<TableRow><TableCell> Wn </TableCell></TableRow>
+									<TableRow><TableCell> Random </TableCell></TableRow>
+								</TableRow>
+							</TableCell>
+							{this.state.solution.map(step => (
+								<TableCell>
+									<TableRow><TableCell>{step.j}</TableCell></TableRow>
+									{step.gns.map(s => (
+										<TableRow><TableCell>{s.Xn}</TableCell></TableRow>
+									))}
+									<TableRow><TableCell>{step.wj}</TableCell></TableRow>
+									<TableRow><TableCell>{step.random}</TableCell></TableRow>
+								</TableCell>
+							))}
+						</TableBody>
+					</Table>
+					</>
 				)}
 
 				{this.state.solution.length > 0 ? (
@@ -205,9 +232,13 @@ class App extends Component {
 					<></>
 				)}
 
-			</>
+			</div>
 		);
 	}
 }
 
-export default App;
+App.propTypes = {
+	classes: PropTypes.object.isRequired,
+}
+
+export default withRoot(withStyles(styles)(App))
