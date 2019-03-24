@@ -94,7 +94,6 @@ class RNCForm extends Component {
 						<Typography className={classes.title} variant="h4" color="inherit">Llena la siguiente forma</Typography>
 						<div class="container">
 							<div class="row" style={{ padding: "1%" }}>
-								<label>Alpha</label>
 								<div className="row">
 									<div className="twelve columns">
 										<FormControl className={classes.formControl}>
