@@ -144,7 +144,7 @@ function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 		console.error('No hay un número suficiente de variables en los generadores')
 		process.exit(1)
 	}
-	console.log(seed,a,m,cases,gens)
+	// console.log(seed,a,m,cases,gens)
 
 	var Xn = seed
 	var Mmax = math.max(m)
@@ -168,9 +168,8 @@ function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 		step.wj = math.mod(math.pow(-1,j-1)*gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax-1)
 		step.random = step.wj/Mmax
 		steps.push(step)
-		
 	}
-	console.log(steps)
+	steps.x0 = (Mmax-1)/(Mmax)
 	return steps
 }
 
@@ -270,8 +269,21 @@ function generatePrimeNumbers(n){
  * @param {*} b 
  */
 function relativePrime(a,b){
-	return (math.mod(parseInt(a),parseInt(b))!=0) && (math.mod(parseInt(b),parseInt(a))!=0)
+	if(a === b){
+		return false
+	}
+
+	while(a!=b){
+		if(a > b) {
+			a = a - b
+		} else {
+			b = b - a
+		}
+	}
+
+	return a == 1
 }
 
+console.log(relativePrime(7,12))
 
 module.exports = {middleSquares,congruentialMethod,congruentialMixedMethod, congruentialMultiplicative,congruentialLinearCombinated,congruentialLinearCombinatedClase}

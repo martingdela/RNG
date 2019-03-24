@@ -14,6 +14,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
 	button: {
@@ -120,6 +121,7 @@ class App extends Component {
 							<TableRow>
 								<TableCell> Number </TableCell>
 								<TableCell> Seed </TableCell>
+								<TableCell> Squared </TableCell>
 								<TableCell> Pre-Random </TableCell>
 								<TableCell> Random </TableCell>
 							</TableRow>
@@ -129,6 +131,7 @@ class App extends Component {
 								<TableRow>
 									<TableCell>{step.n}</TableCell>
 									<TableCell>{step.seed}</TableCell>
+									<TableCell>{step.square}</TableCell>
 									<TableCell>{step.prerandom}</TableCell>
 									<TableCell>{step.random}</TableCell>
 								</TableRow>
@@ -200,7 +203,9 @@ class App extends Component {
 					</Table>
 				): (
 					<>
-					<Table className={classes.table}>
+					<Grid container spacing={24} style={{overflow: "scroll"}}>
+					<Grid item xs = {12}>
+					<Table className={classes.table} style={{wordBreak: "break-word"}}>
 						<TableBody>
 							<TableCell>
 								<TableRow>
@@ -224,10 +229,12 @@ class App extends Component {
 							))}
 						</TableBody>
 					</Table>
+					</Grid>
+					</Grid>
 					</>
 				)}
 
-				{this.state.solution.length > 0 ? (
+				{this.state.solution.length > 0 && ( this.state.method === "1" || this.state.method === "2" || this.state.method === "3") ? (
 					<RNCSelector numbers={this.state.solution}/>
 				) : (
 					<></>

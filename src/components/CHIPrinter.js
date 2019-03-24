@@ -129,6 +129,8 @@ class App extends Component {
 								<td>{this.state.g}</td>
 							</tr>
 						</table>
+
+						{this.state.feisqrsum > this.state.g ? <h4>No pasa esta prueba</h4> : <h4>Si pasa esta prueba</h4>}
 				</>)}
 
 			</>
