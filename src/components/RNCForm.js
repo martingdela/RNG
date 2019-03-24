@@ -2,6 +2,36 @@ import React, { Component } from 'react';
 import CHIPrinter from './CHIPrinter'
 import KOLPrinter from './KOLPrinter'
 
+// Style
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import withRoot from '../withRoot'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import FormHelperText from '@material-ui/core/FormHelperText'
+
+const styles = theme => ({
+	title: {
+		padding: `${theme.spacing.unit * 5}px 0 ${theme.spacing.unit * 3}px 0`,
+		textAlign: 'center',
+	},
+	formControl: {
+		margin: theme.spacing.unit,
+		minWidth: 600,
+		alignItems: 'center',
+	},
+	select: {
+		fontSize: 16,
+		minWidth: 200,
+	},
+	helperText: {
+		fontSize: 11,
+	},
+})
+
 class RNCForm extends Component {
 
 	constructor(props) {
@@ -24,28 +54,31 @@ class RNCForm extends Component {
 	}
 
 	render() {
+		const { classes } = this.props
 		switch (this.props.method) {
 			case "0":
 				return (
 					<>
-						<br />
-						<h5>Llena la siguiente forma</h5>
+						<CssBaseline />
+						<Typography className={classes.title} variant="h4" color="inherit">Llena la siguiente forma</Typography>
 						<div class="container">
 							<div class="row" style={{ padding: "1%" }}>
-								<label>Alpha</label>
 								<div className="row">
 									<div className="twelve columns">
-										<select className="u-full-width" id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
-											<option disabled selected> Selecciona una opcion </option>
-											<option value="0.20">0.20</option>
-											<option value="0.10">0.10</option>
-											<option value="0.05">0.0.05</option>
-											<option value="0.02">0.0.02</option>
-											<option value="0.01">0.01</option>
-											<option value="0.005">0.005</option>
-											<option value="0.002">0.002</option>
-											<option value="0.005">0.001</option>
-										</select>
+										<FormControl className={classes.formControl}>
+											<Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
+												<MenuItem disabled selected> Selecciona una opcion </MenuItem>
+												<MenuItem value="0.20">0.20</MenuItem>
+												<MenuItem value="0.10">0.10</MenuItem>
+												<MenuItem value="0.05">0.05</MenuItem>
+												<MenuItem value="0.02">0.02</MenuItem>
+												<MenuItem value="0.01">0.01</MenuItem>
+												<MenuItem value="0.005">0.005</MenuItem>
+												<MenuItem value="0.002">0.002</MenuItem>
+												<MenuItem value="0.001">0.001</MenuItem>
+											</Select>
+											<FormHelperText className={classes.helperText}>Alpha</FormHelperText>
+										</FormControl>
 									</div>
 								</div>
 							</div>
@@ -57,24 +90,27 @@ class RNCForm extends Component {
 			case "1":
 				return (
 					<>
-						<br />
-						<h5>Llena la siguiente forma</h5>
+						<CssBaseline />
+						<Typography className={classes.title} variant="h4" color="inherit">Llena la siguiente forma</Typography>
 						<div class="container">
 							<div class="row" style={{ padding: "1%" }}>
 								<label>Alpha</label>
 								<div className="row">
 									<div className="twelve columns">
-										<select className="u-full-width" id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
-											<option disabled selected> Selecciona una opcion </option>
-											<option value="0.20">0.20</option>
-											<option value="0.10">0.10</option>
-											<option value="0.05">0.05</option>
-											<option value="0.02">0.02</option>
-											<option value="0.01">0.01</option>
-											<option value="0.005">0.005</option>
-											<option value="0.002">0.002</option>
-											<option value="0.005">0.001</option>
-										</select>
+										<FormControl className={classes.formControl}>
+											<Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
+												<MenuItem disabled selected> Selecciona una opcion </MenuItem>
+												<MenuItem value="0.20">0.20</MenuItem>
+												<MenuItem value="0.10">0.10</MenuItem>
+												<MenuItem value="0.05">0.05</MenuItem>
+												<MenuItem value="0.02">0.02</MenuItem>
+												<MenuItem value="0.01">0.01</MenuItem>
+												<MenuItem value="0.005">0.005</MenuItem>
+												<MenuItem value="0.002">0.002</MenuItem>
+												<MenuItem value="0.001">0.001</MenuItem>
+											</Select>
+											<FormHelperText className={classes.helperText}>Alpha</FormHelperText>
+										</FormControl>
 									</div>
 								</div>
 							</div>
@@ -93,4 +129,8 @@ class RNCForm extends Component {
 
 }
 
-export default RNCForm
+RNCForm.propTypes = {
+	classes: PropTypes.object.isRequired,
+}
+
+export default withRoot(withStyles(styles)(RNCForm))

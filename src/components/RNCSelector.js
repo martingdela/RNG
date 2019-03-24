@@ -1,6 +1,30 @@
 import React, { Component } from 'react';
 import RNCForm from './RNCForm'
 
+// Style
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import withRoot from '../withRoot'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+
+const styles = theme => ({
+	title: {
+		padding: `0 0 ${theme.spacing.unit * 2}px`,
+	},
+	formControl: {
+		margin: theme.spacing.unit,
+		minWidth: 650,
+		alignItems: 'center',
+	},
+	select: {
+		fontSize: 16,
+	},
+})
+
 class RNCSelector extends Component {
 
 	constructor(props){
@@ -24,17 +48,21 @@ class RNCSelector extends Component {
 	}
 
 	render() {
+		const { classes } = this.props
 		return (
-			<>			
-				<h5> Selecciona un metodo de chequeo de numeros aleatorios </h5>
+			<>		
+				<CssBaseline />
+				<Typography className={classes.title} variant="h3" color="inherit"> Selecciona un metodo de chequeo de numeros aleatorios </Typography>	
 				<div className="container">
 					<div className="row">
 						<div className="twelve columns">
-							<select className="u-full-width" id="methodSelector" value={this.state.method} onChange={this.onMethodSelect}>
-								<option disabled selected> Selecciona una opcion </option>
-								<option value="0">Kolmorogov-Smirnov</option>
-								<option value="1">Chi-Cuadrada</option>
-							</select>
+							<FormControl className={classes.formControl}>
+								<Select className={classes.select} id="methodSelector" value={this.state.method} onChange={this.onMethodSelect}>
+									<MenuItem disabled selected> Selecciona una opcion </MenuItem>
+									<MenuItem value="0">Kolmorogov-Smirnov</MenuItem>
+									<MenuItem value="1">Chi-Cuadrada</MenuItem>
+								</Select>
+							</FormControl>
 						</div>
 					</div>
 				</div>
@@ -45,4 +73,8 @@ class RNCSelector extends Component {
 
 }
 
-export default RNCSelector
+RNCSelector.propTypes = {
+	classes: PropTypes.object.isRequired,
+}
+
+export default withRoot(withStyles(styles)(RNCSelector))

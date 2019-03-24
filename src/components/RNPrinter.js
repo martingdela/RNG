@@ -102,7 +102,8 @@ class App extends Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes } = this.props
+		console.log(this.props.a)
 		return (
 			<div>
 				<CssBaseline />

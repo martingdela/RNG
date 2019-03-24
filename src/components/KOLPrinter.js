@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import checker from '../utilities/checker'
 
+// Style
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import withRoot from '../withRoot'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Button from '@material-ui/core/Button'
+
+const styles = theme => ({
+	button: {
+		margin: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 2}px 25%`,
+		minWidth: 150,
+		minHeight: 50,
+		fontSize: 12,
+	},
+})
+
 class App extends Component {
 
 
@@ -31,11 +47,13 @@ class App extends Component {
 	}
 
 	render() {
+		const { classes } = this.props
 		return (
 			<>
+				<CssBaseline />
 				<div className="container">
 					<div class="row" style={{ padding: "1%" }}>
-						<button onClick={this.onClick} type="submit">Checar</button>
+						<Button onClick={this.onClick} type="submit" variant="contained" color="primary" className={classes.button}>Checar</Button>
 					</div>
 				</div>
 				<br />
@@ -95,4 +113,8 @@ class App extends Component {
 	}
 }
 
-export default App;
+App.propTypes = {
+	classes: PropTypes.object.isRequired,
+}
+
+export default withRoot(withStyles(styles)(App))
