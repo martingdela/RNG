@@ -14,10 +14,10 @@ function chisquare(randomnumbers, alpha){
 	var min = math.min(randomnumbers)
 	var range = max - min
 	var k = math.floor(1 + 3.322*math.log10(size))
-	var tsize = range / k
+	var tsize = +(range / k).toFixed(5)
 	// Step 2. Calculate the table
 	var tble = []
-	var lowerBound = min
+	var lowerBound = 0
 	var feisqrsum = 0
 	for(var i = 0; i < k; i++){
 		// Create an object to add on
@@ -27,7 +27,11 @@ function chisquare(randomnumbers, alpha){
 		// Determine the lower bound
 		obj.lowerb = lowerBound
 		// Determine the upper bound
-		obj.upperb = obj.lowerb + tsize
+		if(i === k-1){
+			obj.upperb = max
+		} else {
+			obj.upperb = obj.lowerb + tsize
+		}
 		// Rewrite the lower bound
 		lowerBound = obj.upperb
 		// Calculate f0abs
@@ -43,8 +47,7 @@ function chisquare(randomnumbers, alpha){
 		tble.push(obj)
 	}
 	// Step 4 > Calculate the liberty degrees
-	var v = (k-1)-1
-	console.log(v)
+	var v = (k-1)
 	// Step 5 > Calculate xi^2 dist.
 	if(alpha > 1){
 		alpha = alpha/100
@@ -52,8 +55,9 @@ function chisquare(randomnumbers, alpha){
 
 	var g = gamma.calcFunctionInv(alpha,v)
 	return [feisqrsum, g, tble,size,max,min,range,k,tsize]
-
 }
+
+console.log(chisquare([0.001,9.21,10,11.211,8.223,2.230,2.920,0.761,1.064,0.836,3.810,0.968,4.490,0.186,2.634,1.624,0.333,1.514,2.782,4.778,1.507,4.025,1.064,3.246,0.406,2.343,0.538,5.088,5.587,0.517,1.458,0.234,1.401,0.685,2.330,0.774,3.323,0.294,1.725,2.563,0.023,3.334,3.491,1.267,0.511,0.225,2.325,2.921,1.702,6.426,3.214,7.514,0.334,1.849],0.05))
 
 /**
  * 

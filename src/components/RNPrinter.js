@@ -180,7 +180,7 @@ class App extends Component {
 							))}
 						</TableBody>
 					</Table>
-				): this.props.method === "3" ?(
+				): this.props.method === "3" ?(		
 					<Table className={classes.table}>
 						<TableHead>
 							<TableRow>
@@ -203,6 +203,7 @@ class App extends Component {
 					</Table>
 				): (
 					<>
+					{this.state.solution.x0 !== undefined ? (<h4>X0={this.state.solution.x0}</h4>) : (<></>)}
 					<Grid container spacing={24} style={{overflow: "scroll"}}>
 					<Grid item xs = {12}>
 					<Table className={classes.table} style={{wordBreak: "break-word"}}>

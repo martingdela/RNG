@@ -49,7 +49,7 @@ function middleSquares(seed,cases){
  * @param {Number} cases, method's number of cases 
  */
 function congruentialMethod(seed,a,c,m,cases){
-	if(a <= 0 || b <= 0 || c <= 0 || m <= 0 || cases <= 0){
+	if(a <= 0 || c <= 0 || m <= 0 || cases <= 0){
 		alert('Las variables no cumplen con los requerimientos necesarios para correr este metodo')
 		return []
 	}
@@ -119,7 +119,7 @@ function congruentialMixedMethod(seed, a, c, m, cases){
  * @param {*} cases 
  */
 function congruentialMultiplicative(seed,a,m,cases){
-	if(a <= 0 || b <= 0 || m <= 0 || cases <= 0){
+	if(a <= 0 || m <= 0 || cases <= 0){
 		alert('Las variables no satisfacen los req. para este metodo')
 		return []
 	}
@@ -155,14 +155,18 @@ function congruentialLinearCombinated(seed, a, m, c, cases,gens) {
 			var gn = {}
 			gn.k = k+1
 			//We calculate the generator
-			Xn[k] = math.mod((parseInt(a[k])+parseInt(c[k]))*Xn[k],m[k])
+			Xn[k] = math.mod((parseInt(a[k])*Xn[k])+parseInt(c[k]),parseInt(m[k]))
 			gn.Xn = Xn[k]
 			gns.push(gn)
 		}
 		step.gns = gns
 		//We calculate the Wj value
 		step.j = j
-		step.wj = math.mod(math.pow(-1,j-1)*gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax-1)
+		var subs = gns[0].Xn
+		for(var i = 1; i < gns.length; i++){
+			subs-=parseInt(gns[i].Xn)
+		}
+		step.wj = math.mod(math.pow(-1,j-1)*subs,Mmax-1)
 		step.random = step.wj/Mmax
 		steps.push(step)
 	}
@@ -174,6 +178,8 @@ function congruentialLinearCombinatedClase(seed, a, m, c, cases,gens){
 	if(!(parseInt(seed.length) == parseInt(a.length) && parseInt(seed.length) == parseInt(m.length) && parseInt(a.length) == parseInt(m.length))) {
 		alert('No hay un número suficiente de variables en los generadores')
 	}
+
+	console.log(seed,a,m,c,cases,gens)
 
 	var Xn = seed
 	var Mmax = math.max(m)
@@ -187,14 +193,18 @@ function congruentialLinearCombinatedClase(seed, a, m, c, cases,gens){
 			var gn = {}
 			gn.k = k+1
 			//We calculate the generator
-			Xn[k] = math.mod((parseInt(a[k])+parseInt(c[k]))*Xn[k],m[k])
+			Xn[k] = math.mod((parseInt(a[k])*Xn[k])+parseInt(c[k]),parseInt(m[k]))
 			gn.Xn = Xn[k]
 			gns.push(gn)
 		}
 		step.gns = gns
 		//We calculate the Wj value
 		step.j = j
-		step.wj = math.mod(gns.reduce(function(a,b){return a.Xn-b.Xn}),Mmax)
+		var subs = gns[0].Xn
+		for(var i = 1; i < gns.length; i++){
+			subs-=parseInt(gns[i].Xn)
+		}
+		step.wj = math.mod(subs,Mmax)
 		step.random = step.wj/Mmax
 		steps.push(step)
 		
