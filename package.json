@@ -1,0 +1,72 @@
+{
+  "name": "simulacion",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Team 1 <a01334390@itesm.mx> (martntn.com)",
+  "description": "Made with love",
+  "homepage": "./",
+  "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "electron-is-dev": "^1.0.1",
+    "mathjs": "^5.7.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8"
+  },
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron-start": "electron .",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "build -l -c.extraMetadata.main=build/electron.js"
+  },
+  "build": {
+    "appId": "nonExistentID",
+    "asar": true,
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "node": "^8.15.0"
+  }
+}
