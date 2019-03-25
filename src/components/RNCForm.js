@@ -12,6 +12,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import FormHelperText from '@material-ui/core/FormHelperText'
+import Input from '@material-ui/core/Input'
 
 const styles = theme => ({
 	title: {
@@ -66,7 +67,8 @@ class RNCForm extends Component {
 								<div className="row">
 									<div className="twelve columns">
 										<FormControl className={classes.formControl}>
-											<Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
+										<Input className={classes.Input} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}/>
+											{/* <Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
 												<MenuItem disabled selected> Selecciona una opcion </MenuItem>
 												<MenuItem value="0.20">0.20</MenuItem>
 												<MenuItem value="0.10">0.10</MenuItem>
@@ -76,7 +78,7 @@ class RNCForm extends Component {
 												<MenuItem value="0.005">0.005</MenuItem>
 												<MenuItem value="0.002">0.002</MenuItem>
 												<MenuItem value="0.001">0.001</MenuItem>
-											</Select>
+											</Select> */}
 											<FormHelperText className={classes.helperText}>Alpha</FormHelperText>
 										</FormControl>
 									</div>
@@ -97,7 +99,8 @@ class RNCForm extends Component {
 								<div className="row">
 									<div className="twelve columns">
 										<FormControl className={classes.formControl}>
-											<Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
+										<Input className={classes.Input} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}/>
+											{/* <Select className={classes.select} id="alpha" value={this.state.alpha} onChange={this.handleInputChange}>
 												<MenuItem disabled selected> Selecciona una opcion </MenuItem>
 												<MenuItem value="0.20">0.20</MenuItem>
 												<MenuItem value="0.10">0.10</MenuItem>
@@ -107,7 +110,7 @@ class RNCForm extends Component {
 												<MenuItem value="0.005">0.005</MenuItem>
 												<MenuItem value="0.002">0.002</MenuItem>
 												<MenuItem value="0.001">0.001</MenuItem>
-											</Select>
+											</Select> */}
 											<FormHelperText className={classes.helperText}>Alpha</FormHelperText>
 										</FormControl>
 									</div>

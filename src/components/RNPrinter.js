@@ -235,7 +235,7 @@ class App extends Component {
 					</>
 				)}
 
-				{this.state.solution.length > 0 && ( this.state.method === "1" || this.state.method === "2" || this.state.method === "3") ? (
+				{this.state.solution.length && (this.props.method == "1" || this.props.method == "2" || this.props.method == "3")> 0 ? (
 					<RNCSelector numbers={this.state.solution}/>
 				) : (
 					<></>

@@ -108,10 +108,10 @@ function invSmirnov(n, alpha) {
 			i = 7
 			break
 		default:
-			console.error("No soportamos ese alpha")
+			alert("No soportamos ese alpha")
 			return;
 	}
-
+	console.log(n,i)
 	return table[n-1][i]
 }
 

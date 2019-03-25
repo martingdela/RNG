@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "electron-start": "electron .",
     "preelectron-pack": "npm run build",
-    "electron-pack": "build -l -c.extraMetadata.main=build/electron.js"
+    "electron-pack": "build -mwl -c.extraMetadata.main=build/electron.js"
   },
   "build": {
     "appId": "nonExistentID",
